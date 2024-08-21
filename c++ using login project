@@ -1,0 +1,72 @@
+struct UserDetails
+{
+    int m_no;
+    string name;
+    string email;
+};
+vector<UserDetails> user;
+void registration()
+{
+    UserDetails u; // u is a typedef of struct are using to access
+    cout << "Enter name:";
+    cin.ignore();           // using these to ignore new line leftover
+    getline(cin, u.name);
+
+    cout << "Enter mobile no:";
+    cin >> u.m_no;
+
+    cout << "Enter email-id:";
+    cin.ignore();
+    getline(cin, u.email);
+    user.push_back(u);             // by a vector property 
+    cout << "login sucess" << endl;
+}
+void login()
+{
+    string username;
+    string emailid;
+    cout << "Enter name:";
+    cin.ignore();
+    getline(cin, username);
+
+    cout << "Enter email-id:";
+    getline(cin, emailid);
+    bool loginSucess = false;     // taking bool as false
+    for (auto it : user)            // for each loop
+    {
+        if (it.name == username && it.email == emailid)
+        {
+            cout << "Login sucessful" << endl;
+            loginSucess = true;
+            break;
+        }
+    }
+    if (!loginSucess)
+    {
+        cout << "failed to login" << endl;
+    }
+}
+
+int main()
+{
+    while (1)
+    {
+        int num;
+        cout << "Enter choice :" << endl
+            << "1 -> new user" << endl
+            << "2 -> Login" << endl;
+        cin >> num;
+        if (num == 1)
+        {
+            registration();
+        }
+        else if (num == 2)
+        {
+            login();
+        }
+        else
+        {
+            break;
+        }
+    }
+}
